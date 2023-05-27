@@ -1,0 +1,78 @@
+@mixin generate-grid-item($grid-gutter, $i) {
+  @if $grid-gutter == 0 {
+    flex-basis: calc(100% / calc(12 / #{$i}));
+  } @else {
+    flex-basis: calc(100% / calc(12 /#{$i}) - #{$grid-gutter});
+  }
+}
+
+@mixin generate-grid($grid-gutter) {
+  margin-left: calc($grid-gutter / 2 * -1);
+  margin-right: calc($grid-gutter / 2 * -1);
+
+  /* stylelint-disable */
+  > .grid__col {
+    flex: 0 1 auto;
+    margin-left: calc($grid-gutter / 2);
+    margin-right: calc($grid-gutter / 2);
+
+    &--s {
+      @for $i from 1 through 12 {
+        &#{$i} {
+          @include generate-grid-item($grid-gutter, $i);
+        }
+      }
+    }
+
+    &--m {
+      @for $i from 1 through 12 {
+        &#{$i} {
+          @include media(medium) {
+            @include generate-grid-item($grid-gutter, $i);
+          }
+        }
+      }
+    }
+
+    &--l {
+      @for $i from 1 through 12 {
+        &#{$i} {
+          @include media(large) {
+            @include generate-grid-item($grid-gutter, $i);
+          }
+        }
+      }
+    }
+
+    &--offset {
+      @for $i from 2 through 12 {
+        &#{$i} {
+          @if $grid-gutter == 0 {
+            margin-left: calc(100% / calc(12 / #{$i - 1}));
+          } @else {
+            margin-left: calc(100% / calc(12 / #{$i - 1}) + #{$grid-gutter} / 2);
+          }
+        }
+      }
+    }
+  }
+}
+
+.grid {
+  display: flex;
+  flex-flow: row wrap;
+
+  @include generate-grid($spacing-s);
+
+  &--no-gutter {
+    @include generate-grid(0);
+  }
+
+  &--gutter-m {
+    @include generate-grid($spacing-m);
+  }
+
+  &--gutter-l {
+    @include generate-grid($spacing-l);
+  }
+}
