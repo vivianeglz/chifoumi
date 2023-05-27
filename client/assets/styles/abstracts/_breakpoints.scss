@@ -1,0 +1,24 @@
+/* Breakpoints */
+$breakpoint-small: 375px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 1180px;
+
+@mixin media($media-size) {
+  @if $media-size == small {
+    @media only screen and (min-width: $breakpoint-small) {
+      @content;
+    }
+  }
+
+  @if $media-size == medium {
+    @media only screen and (min-width: $breakpoint-medium) {
+      @content;
+    }
+  }
+
+  @if $media-size == large {
+    @media only screen and (min-width: $breakpoint-large) {
+      @content;
+    }
+  }
+}

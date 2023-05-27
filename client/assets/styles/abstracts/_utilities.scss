@@ -1,0 +1,203 @@
+/* ==== Block ==== */
+$spacing-direction: top, bottom, left, right;
+$spacing-values: (
+  'null': 0,
+  'auto': auto,
+  'xs': $spacing-xs,
+  's': $spacing-s,
+  'm': $spacing-m,
+  'ml': $spacing-ml,
+  'l': $spacing-l,
+  'xl': $spacing-xl
+);
+
+/* Margin */
+.margin {
+  @each $name, $value in $spacing-values {
+    &--#{$name} {
+      margin: $value !important;
+    }
+  }
+
+  @each $direction in $spacing-direction {
+    &--#{$direction} {
+      @each $name, $value in $spacing-values {
+        &--#{$name} {
+          margin-#{$direction}: $value !important;
+        }
+      }
+    }
+  }
+}
+
+/* Padding */
+.padding {
+  @each $name, $value in $spacing-values {
+    &--#{$name} {
+      padding: $value !important;
+    }
+  }
+
+  @each $direction in $spacing-direction {
+    &--#{$direction} {
+      @each $name, $value in $spacing-values {
+        &--#{$name} {
+          padding-#{$direction}: $value !important;
+        }
+      }
+    }
+  }
+}
+
+/* Display */
+$display-values: block, flex, inline, inline-block, none;
+
+.display {
+  @each $display-value in $display-values {
+    &--#{$display-value} {
+      display: $display-value !important;
+    }
+  }
+}
+
+.display-center {
+  display: flex !important;
+  flex-flow: column nowrap;
+  align-items: center !important;
+  justify-content: center;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.fullscreen-height {
+  height: 100vh;
+}
+
+.fullscreen-width {
+  width: 100vw;
+}
+
+/* Background */
+$background-color-values: (
+  'neutral-100': $color-neutral-100,
+  'neutral-50': $color-neutral-50,
+  'neutral-00': $color-neutral-00,
+  'primary-1': $color-primary-1
+);
+
+.background {
+  @each $name, $value in $background-color-values {
+    &--#{$name} {
+      background-color: $value;
+    }
+  }
+}
+
+/* Wrapper */
+.wrapper {
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+
+  @include media(medium) {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+
+  @include media(large) {
+    margin-left: 7.5rem;
+    margin-right: 7.5rem;
+  }
+
+  &--s {
+    @media screen and (min-width: #{37.25 + 7.5 * 2}rem) {
+      max-width: 37.25rem; // 596px
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &--m {
+    @media screen and (min-width: #{62.25 + 7.5 * 2}rem) {
+      max-width: 62.25rem; // 996px
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &--l {
+    @media screen and (min-width: #{74.75 + 7.5 * 2}rem) {
+      max-width: 74.75rem; // 1196px
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* ==== Text ==== */
+
+/* Text-align */
+$text-align-values: center, left, right;
+
+.text-align {
+  @each $text-align in $text-align-values {
+    &--#{$text-align} {
+      text-align: $text-align;
+    }
+  }
+}
+
+/* Text color */
+$text-color-values: (
+  'neutral-100': $color-neutral-100,
+  'neutral-50': $color-neutral-50,
+  'neutral-00': $color-neutral-00,
+  'primary-1': $color-primary-1,
+  'warning': $color-warning,
+  'caution': $color-caution,
+  'positive': $color-positive
+);
+
+/* Text global typography */
+$text-body-values: 's', 'm';
+
+.text {
+  &-heading {
+    @include text-heading;
+  }
+
+  &-body {
+    @each $value in $text-body-values {
+      &--#{$value} {
+        @include text-body($value);
+      }
+    }
+  }
+}
+
+.color {
+  @each $name, $value in $text-color-values {
+    &--#{$name} {
+      color: $value;
+    }
+  }
+}
+
+.font-weight {
+  &--regular {
+    font-weight: $font-weight-regular;
+  }
+
+  &--bold {
+    font-weight: $font-weight-bold;
+  }
+
+  &--semi-bold {
+    font-weight: $font-weight-semi-bold;
+  }
+}

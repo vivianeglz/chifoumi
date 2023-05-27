@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import HomeHeader from '@/components/sections/home/HomeHeader.vue'
+import HomeActions from '@/components/sections/home/HomeActions.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <header class="fullscreen-height display-center wrapper wrapper--s">
+    <HomeHeader />
+    <HomeActions />
+  </header>
 </template>

@@ -1,0 +1,39 @@
+/* === Variables === */
+
+/* Font weights */
+$font-weight-regular: 400;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+
+/* font family */
+$font-family-title: 'Poppins', sans-serif;
+$font-family-body: 'Poppins', sans-serif;
+
+/* === Headings === */
+@mixin text-heading() {
+  font-family: $font-family-title;
+  font-weight: $font-weight-bold;
+  font-size: 3em;
+  color: $color-neutral-100;
+}
+
+/* Body */
+@mixin text-body-s {
+  font-size: 1em;
+}
+@mixin text-body-m {
+  font-size: 1.5em;
+}
+
+@mixin text-body($size) {
+  font-family: $font-family-body;
+  font-weight: $font-weight-regular;
+  color: $color-neutral-100;
+
+  @if $size == 's' {
+    @include text-body-s;
+  }
+  @if $size == 'm' {
+    @include text-body-m;
+  }
+}
