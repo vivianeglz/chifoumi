@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import getRandomId from '@helpers/getRandomId'
+import getRandomId from '@common/helpers/getRandomId'
 
 describe('getRandomId', () => {
   it('getRandomId - generates 6 random characters', () => {
