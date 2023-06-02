@@ -23,4 +23,11 @@ describe('ButtonPrimary', () => {
     const component = wrapper.find('[data-test="button-primary"]')
     expect(component.html()).toContain('</router-link>')
   })
+
+  it('ButtonPrimary - emit click on click', async () => {
+    const wrapper = mount(ButtonPrimary, { slots: { default: 'Button content' } })
+    const component = wrapper.find('[data-test="button-primary"]')
+    await component.trigger('click')
+    expect(wrapper.emitted()).toHaveProperty('click')
+  })
 })

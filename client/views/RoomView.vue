@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import useRoom from '@/composables/useRoom'
+import RoomHeader from '@/components/sections/room/RoomHeader.vue'
+import RoomActions from '@/components/sections/room/RoomActions.vue'
 
-const route = useRoute()
-const roomId = computed(() => route.params.id)
+const { setRoom } = useRoom()
+
+setRoom()
 </script>
 
 <template>
-  <header>
-    <h1 class="text-heading">Room {{ roomId }}</h1>
-  </header>
-  <main></main>
+  <div class="fullscreen-height">
+    <RoomHeader />
+    <RoomActions />
+  </div>
 </template>

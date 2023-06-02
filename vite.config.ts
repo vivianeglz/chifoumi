@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./client', import.meta.url)),
-      '@helpers': fileURLToPath(new URL('./helpers', import.meta.url))
+      '@common': fileURLToPath(new URL('./common', import.meta.url))
     }
   }
 })
