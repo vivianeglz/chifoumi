@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import useSocket from '@/composables/useSocket'
+import useRoom from '@/composables/useRoom'
 import ButtonPrimary from '@/components/globals/buttons/ButtonPrimary.vue'
 
-const route = useRoute()
-const { joinRoom, totalUsers } = useSocket()
+const { room, setRoom, startRound } = useRoom()
 
-const roomId = computed(() =>
-  Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
-)
-
-joinRoom(roomId.value)
+setRoom()
 </script>
 
 <template>
@@ -21,11 +14,12 @@ joinRoom(roomId.value)
         <router-link :to="{ name: 'home' }">Chifoumi</router-link>
       </h1>
       <p class="text-body--s margin--null">
-        Utilisateurs en ligne: <strong>{{ totalUsers }}</strong>
+        Utilisateurs en ligne: <strong>{{ room.totalUsers }}</strong>
       </p>
     </header>
     <main class="display-center full-height">
-      <ButtonPrimary>Jouer !</ButtonPrimary>
+      <p v-if="room.isRoundRunning">C'est parti !</p>
+      <ButtonPrimary v-else @click="startRound">Jouer !</ButtonPrimary>
     </main>
   </div>
 </template>

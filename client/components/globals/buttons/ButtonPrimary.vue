@@ -5,10 +5,17 @@ withDefaults(
   }>(),
   { tag: 'button' }
 )
+
+const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <component :is="tag" data-test="button-primary" class="button button--primary">
+  <component
+    :is="tag"
+    data-test="button-primary"
+    class="button button--primary"
+    @click="emit('click')"
+  >
     <slot />
   </component>
 </template>
