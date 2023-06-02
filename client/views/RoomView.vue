@@ -1,25 +1,16 @@
 <script setup lang="ts">
 import useRoom from '@/composables/useRoom'
-import ButtonPrimary from '@/components/globals/buttons/ButtonPrimary.vue'
+import RoomHeader from '@/components/sections/room/RoomHeader.vue'
+import RoomActions from '@/components/sections/room/RoomActions.vue'
 
-const { room, setRoom, startRound } = useRoom()
+const { setRoom } = useRoom()
 
 setRoom()
 </script>
 
 <template>
   <div class="fullscreen-height">
-    <header class="header-room">
-      <h1 class="text-body--m margin--null">
-        <router-link :to="{ name: 'home' }">Chifoumi</router-link>
-      </h1>
-      <p class="text-body--s margin--null">
-        Utilisateurs en ligne: <strong>{{ room.totalUsers }}</strong>
-      </p>
-    </header>
-    <main class="display-center full-height">
-      <p v-if="room.isRoundRunning">C'est parti !</p>
-      <ButtonPrimary v-else @click="startRound">Jouer !</ButtonPrimary>
-    </main>
+    <RoomHeader />
+    <RoomActions />
   </div>
 </template>

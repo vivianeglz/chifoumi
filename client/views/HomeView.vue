@@ -4,8 +4,8 @@ import HomeActions from '@/components/sections/home/HomeActions.vue'
 </script>
 
 <template>
-  <header class="fullscreen-height display-center wrapper wrapper--s">
+  <div class="fullscreen-height display-center wrapper wrapper--s">
     <HomeHeader />
     <HomeActions />
-  </header>
+  </div>
 </template>
