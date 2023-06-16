@@ -2,8 +2,9 @@
 withDefaults(
   defineProps<{
     tag?: 'button' | 'a' | 'router-link'
+    variant?: 'primary' | 'secondary'
   }>(),
-  { tag: 'button' }
+  { tag: 'button', variant: 'primary' }
 )
 
 const emit = defineEmits(['click'])
@@ -12,8 +13,8 @@ const emit = defineEmits(['click'])
 <template>
   <component
     :is="tag"
+    :class="`button button--${variant}`"
     data-test="button-primary"
-    class="button button--primary"
     @click="emit('click')"
   >
     <slot />
