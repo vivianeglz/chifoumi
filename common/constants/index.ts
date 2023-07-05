@@ -1,4 +1,4 @@
-const socketPort: number = 4000
-const choiceSlugs: Array<string> = ['rock', 'leaf', 'scissors']
+const socketPort: number = 5000
+const choiceSlugs: Array<ChoiceSlug> = ['rock', 'leaf', 'scissors']
 
 export { socketPort, choiceSlugs }

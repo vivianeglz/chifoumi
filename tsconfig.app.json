@@ -1,12 +1,13 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "client/**/*", "client/**/*.vue"],
+  "include": ["client/**/*", "client/**/*.vue"],
   "exclude": ["client/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./client/*"]
+      "@/*": ["./client/*"],
+      "@common/*": ["./common/*"]
     }
   }
 }
