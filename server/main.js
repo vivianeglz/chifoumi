@@ -10,7 +10,16 @@ const appSockets = new Server(appHttp, {
     origins: '*'
   }
 })
+
 const rooms = {}
+const choiceSlugs = ['rock', 'leaf', 'scissors']
+
+const getRandomChoiceForUsers = (users) =>
+  users.forEach((user) => {
+    if (user.choiceSlug) return
+    const randomChoiceSlug = choiceSlugs[Math.floor(Math.random() * choiceSlugs.length)]
+    user.choiceSlug = randomChoiceSlug
+  })
 
 appHttp.listen(port, () => {
   console.log(`App listening on port ${port}`)
@@ -38,6 +47,10 @@ appSockets.on('connection', (socket) => {
     const updateRoom = (timer) => {
       rooms[roomId].timer = timer
       rooms[roomId].isRoundRunning = timer > 0
+      const isEndRound = !rooms[roomId].isRoundRunning && rooms[roomId].users?.length
+      if (isEndRound) {
+        getRandomChoiceForUsers(rooms[roomId].users)
+      }
       const responseBody = getRoomUpdatedBody(roomId)
       socket.emit('room-updated', responseBody)
       socket.to(`room-${roomId}`).emit('room-updated', responseBody)
