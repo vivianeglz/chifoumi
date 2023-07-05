@@ -1,4 +1,11 @@
+declare type User = {
+  id: number
+  choiceSlug?: string
+}
+
 declare type Room = {
-  totalUsers: number
+  users: Array<User>
   isRoundRunning: boolean
+  timer: number
+  userId: number
 }

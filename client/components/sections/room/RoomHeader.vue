@@ -10,7 +10,7 @@ const { room } = useRoom()
       <router-link :to="{ name: 'home' }">Chifoumi</router-link>
     </h1>
     <p class="text-body--s margin--null">
-      Utilisateurs en ligne: <strong>{{ room.totalUsers }}</strong>
+      Utilisateurs en ligne: <strong>{{ room.users.length }}</strong>
     </p>
   </header>
 </template>

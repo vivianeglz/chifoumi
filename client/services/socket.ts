@@ -5,7 +5,7 @@ class SocketioService {
   socket: Socket
 
   constructor() {
-    this.socket = io(`localhost:${socketPort}`)
+    this.socket = io(`http://192.168.1.88:${socketPort}`)
   }
 
   emit(event: string, params: object): void {
