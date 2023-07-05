@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { choiceSlugs } from '@common/constants'
 import useRoom from '@/composables/useRoom'
 import ButtonPrimary from '@/components/globals/buttons/ButtonPrimary.vue'
+import { getChoiceIcon } from '@/helpers'
 
 const { room, timerLabel, userChoiceSlug, startRound, updateUserChoice } = useRoom()
+
+const getVariant = (choiceSlug: string) =>
+  userChoiceSlug.value === choiceSlug ? 'primary' : 'secondary'
 </script>
 
 <template>
@@ -11,25 +16,13 @@ const { room, timerLabel, userChoiceSlug, startRound, updateUserChoice } = useRo
       <p>{{ timerLabel }}</p>
       <div class="display-flex">
         <ButtonPrimary
-          :variant="userChoiceSlug === 'rock' ? 'primary' : 'secondary'"
-          @click="updateUserChoice('rock')"
+          v-for="choiceSlug in choiceSlugs"
+          :key="choiceSlug"
+          :variant="getVariant(choiceSlug)"
+          @click="updateUserChoice(choiceSlug)"
           class="margin--left--s margin--right--s"
         >
-          <FontAwesomeIcon icon="fa-solid fa-hand-back-fist" />
-        </ButtonPrimary>
-        <ButtonPrimary
-          :variant="userChoiceSlug === 'leaf' ? 'primary' : 'secondary'"
-          @click="updateUserChoice('leaf')"
-          class="margin--left--s margin--right--s"
-        >
-          <FontAwesomeIcon icon="fa-solid fa-hand" />
-        </ButtonPrimary>
-        <ButtonPrimary
-          :variant="userChoiceSlug === 'scissors' ? 'primary' : 'secondary'"
-          @click="updateUserChoice('scissors')"
-          class="margin--left--s margin--right--s"
-        >
-          <FontAwesomeIcon icon="fa-solid fa-hand-scissors" />
+          <FontAwesomeIcon :icon="getChoiceIcon(choiceSlug)" />
         </ButtonPrimary>
       </div>
     </template>

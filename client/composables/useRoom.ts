@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import socketService from '@/services/socket.js'
+import { socketService } from '@/services'
 
 const timerLabels = ['Mi !', 'Fou..', 'Chi..']
 const socket = new socketService()
