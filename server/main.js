@@ -4,7 +4,7 @@ const { Server } = require('socket.io')
 
 const app = express()
 const appHttp = http.createServer(app)
-const port = 4000
+const port = 5000
 const appSockets = new Server(appHttp, {
   cors: {
     origins: '*'
@@ -47,7 +47,7 @@ appSockets.on('connection', (socket) => {
     const updateRoom = (timer) => {
       rooms[roomId].timer = timer
       rooms[roomId].isRoundRunning = timer > 0
-      const isEndRound = !rooms[roomId].isRoundRunning && rooms[roomId].users?.length
+      const isEndRound = !rooms[roomId].isRoundRunning
       if (isEndRound) {
         getRandomChoiceForUsers(rooms[roomId].users)
       }
