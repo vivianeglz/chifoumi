@@ -1,4 +1,4 @@
-const getChoiceIcon = (choiceSlug: string): string => {
+const getChoiceIcon = (choiceSlug: any): string => {
   switch (choiceSlug) {
     case 'rock':
       return 'fa-solid fa-hand-back-fist'
@@ -7,7 +7,7 @@ const getChoiceIcon = (choiceSlug: string): string => {
     case 'scissors':
       return 'fa-solid fa-hand-scissors'
     default:
-      throw new Error("Error choiceSlug param : this icon doesn't exists")
+      throw new Error("Error param : this choice slug doesn't exist")
   }
 }
 

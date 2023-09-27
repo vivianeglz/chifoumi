@@ -1,11 +1,12 @@
+declare type ChoiceSlug = '' | 'rock' | 'leaf' | 'scissors'
+
 declare type User = {
-  id: number
-  choiceSlug?: string
+  id: string
+  choiceSlug: string
 }
 
 declare type Room = {
   users: Array<User>
   isRoundRunning: boolean
   timer: number
-  userId: number
 }
