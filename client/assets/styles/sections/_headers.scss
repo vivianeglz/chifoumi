@@ -5,11 +5,15 @@
   right: 0;
   padding: $spacing-s;
 
+  &__users {
+    list-style: none;
+  }
+
   @include media('small') {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
 
   a {

@@ -32,6 +32,7 @@ export default () => {
     (): boolean =>
       !isRoundRunning.value && room.value.users.every((user: User) => !!user.choiceSlug)
   )
+  const isRoundReady = computed((): boolean => room.value.users.every((user: User) => user.isReady))
 
   const updateRoom = (newRoomData: object): void => {
     Object.assign(room.value, newRoomData)
@@ -46,8 +47,11 @@ export default () => {
   const startRound = (): void => {
     socket.emit('room-start-round', { roomId: roomId.value })
   }
+  const updateUserReadyStatus = (): void => {
+    socket.emit('room-update-user', { roomId: roomId.value, data: { isReady: true } })
+  }
   const updateUserChoice = (choiceSlug: ChoiceSlug): void => {
-    socket.emit('room-select-choice', { roomId: roomId.value, choiceSlug })
+    socket.emit('room-update-user', { roomId: roomId.value, data: { choiceSlug } })
   }
 
   return {
@@ -58,8 +62,10 @@ export default () => {
     opponents,
     isRoundRunning,
     isRoundEnd,
+    isRoundReady,
     setRoom,
     startRound,
+    updateUserReadyStatus,
     updateUserChoice
   }
 }
