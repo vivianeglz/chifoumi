@@ -1,7 +1,8 @@
 import express from 'express'
 import http from 'http'
 import { Server } from 'socket.io'
-import { joinRoom, startRound, selectChoice, disconnecting } from './modules/rooms/index'
+import { type UserDataToUpdate } from '@common/types/index.d'
+import { joinRoom, startRound, disconnecting, updateRoomUser } from './modules/rooms/index'
 
 const app = express()
 const appHttp = http.createServer(app)
@@ -13,12 +14,12 @@ const serverSocketsParams = {
 const serverSockets = new Server(appHttp, serverSocketsParams)
 
 serverSockets.on('connection', (socket) => {
-  socket.on('join-room', ({ roomId }) => joinRoom({ socket, roomId }))
+  socket.on('join-room', ({ roomId }: { roomId: string }) => joinRoom({ socket, roomId }))
 
-  socket.on('room-start-round', ({ roomId }) => startRound({ socket, roomId }))
+  socket.on('room-start-round', ({ roomId }: { roomId: string }) => startRound({ socket, roomId }))
 
-  socket.on('room-select-choice', ({ roomId, choiceSlug }) =>
-    selectChoice({ socket, roomId, choiceSlug })
+  socket.on('room-update-user', ({ roomId, data }: { roomId: string; data: UserDataToUpdate }) =>
+    updateRoomUser({ socket, roomId, data })
   )
 
   socket.on('disconnecting', () => disconnecting({ socket }))

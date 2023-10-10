@@ -1,4 +1,10 @@
-import { type ChoiceSlug, type Rooms, type Room, type User } from '@common/types/index.d'
+import {
+  type ChoiceSlug,
+  type Rooms,
+  type Room,
+  type User,
+  type UserDataToUpdate
+} from '@common/types/index.d'
 
 const rooms: Rooms = {}
 const choiceSlugs: Array<ChoiceSlug> = ['rock', 'leaf', 'scissors']
@@ -33,7 +39,12 @@ const joinRoom = ({ socket, roomId }: { socket: any; roomId: string }): void => 
   if (!rooms[roomId]) {
     rooms[roomId] = { users: [], isRoundRunning: false, timer: 0 }
   }
-  rooms[roomId].users.push({ id: socket.id, choiceSlug: '' })
+  rooms[roomId].users.push({
+    id: socket.id,
+    choiceSlug: '',
+    name: `user-${socket.id.substring(0, 5)}`,
+    isReady: false
+  })
   const responseBody: Room = getRoomUpdatedBody(roomId)
   socket.emit('room-connected', socket.id)
   socket.emit('room-updated', responseBody)
@@ -49,22 +60,6 @@ const startRound = ({ socket, roomId }: { socket: any; roomId: string }): void =
   }, 1000)
 }
 
-const selectChoice = ({
-  socket,
-  roomId,
-  choiceSlug
-}: {
-  socket: any
-  roomId: string
-  choiceSlug: ChoiceSlug
-}): void => {
-  const userIndex: number = rooms[roomId].users.findIndex((user) => user.id === socket.id)
-  rooms[roomId].users[userIndex].choiceSlug = choiceSlug
-  const responseBody: Room = getRoomUpdatedBody(roomId)
-  socket.emit('room-updated', responseBody)
-  socket.to(`room-${roomId}`).emit('room-updated', responseBody)
-}
-
 const disconnecting = ({ socket }: { socket: any }) => {
   for (const [roomId, room] of Object.entries(rooms)) {
     const isUserRoom: boolean = room.users.some((item: User) => item.id === socket.id)
@@ -76,4 +71,20 @@ const disconnecting = ({ socket }: { socket: any }) => {
   }
 }
 
-export { joinRoom, startRound, selectChoice, disconnecting }
+const updateRoomUser = ({
+  socket,
+  roomId,
+  data
+}: {
+  socket: any
+  roomId: string
+  data: UserDataToUpdate
+}): void => {
+  const userIndex: number = rooms[roomId].users.findIndex((user) => user.id === socket.id)
+  Object.assign(rooms[roomId].users[userIndex], data)
+  const responseBody: Room = getRoomUpdatedBody(roomId)
+  socket.emit('room-updated', responseBody)
+  socket.to(`room-${roomId}`).emit('room-updated', responseBody)
+}
+
+export { joinRoom, startRound, disconnecting, updateRoomUser }
