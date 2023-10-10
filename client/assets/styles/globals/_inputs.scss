@@ -1,0 +1,15 @@
+.input-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  &__label {
+    display: block;
+  }
+  &__input {
+    margin-top: $spacing-xs;
+    padding: $spacing-xs;
+    border-radius: 4px;
+    border: 1px solid $color-neutral-100;
+  }
+}

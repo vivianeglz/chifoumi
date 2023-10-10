@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { type Room, type User, type ChoiceSlug } from '@common/types/index.d'
+import { type Room, type User, type ChoiceSlug, type UserDataToUpdate } from '@common/types/index.d'
 import { socketService } from '@client/services'
 import { getUserWinner } from '@client/helpers'
 
@@ -12,6 +12,7 @@ const room = ref<Room>({
   timer: 0
 })
 const userId = ref<string>('')
+const userName = ref<string>('')
 
 export default () => {
   const route = useRoute()
@@ -32,7 +33,10 @@ export default () => {
     (): boolean =>
       !isRoundRunning.value && room.value.users.every((user: User) => !!user.choiceSlug)
   )
-  const isRoundReady = computed((): boolean => room.value.users.every((user: User) => user.isReady))
+  const isRoundReady = computed(
+    (): boolean =>
+      room.value.users.length > 1 && room.value.users.every((user: User) => user.isReady)
+  )
 
   const updateRoom = (newRoomData: object): void => {
     Object.assign(room.value, newRoomData)
@@ -40,21 +44,20 @@ export default () => {
   const setRoom = (): void => {
     socket.emit('join-room', { roomId: roomId.value })
     socket.on('room-updated', updateRoom)
-    socket.on('room-connected', (id: string) => {
+    socket.on('room-connected', ({ id, name }: { id: string; name: string }) => {
       userId.value = id
+      userName.value = name
     })
   }
   const startRound = (): void => {
     socket.emit('room-start-round', { roomId: roomId.value })
   }
-  const updateUserReadyStatus = (): void => {
-    socket.emit('room-update-user', { roomId: roomId.value, data: { isReady: true } })
-  }
-  const updateUserChoice = (choiceSlug: ChoiceSlug): void => {
-    socket.emit('room-update-user', { roomId: roomId.value, data: { choiceSlug } })
+  const updateUser = (data: UserDataToUpdate): void => {
+    socket.emit('room-update-user', { roomId: roomId.value, data })
   }
 
   return {
+    userName,
     room,
     timerLabel,
     user,
@@ -65,7 +68,6 @@ export default () => {
     isRoundReady,
     setRoom,
     startRound,
-    updateUserReadyStatus,
-    updateUserChoice
+    updateUser
   }
 }
