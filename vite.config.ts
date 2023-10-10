@@ -10,7 +10,8 @@ export default defineConfig({
       '@common': fileURLToPath(new URL('./common', import.meta.url))
     }
   },
+  root: 'client/',
   build: {
-    outDir: './client/dist'
+    outDir: '../dist/client'
   }
 })
