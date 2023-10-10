@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { type Room, type User, type ChoiceSlug, type UserDataToUpdate } from '@common/types/index.d'
+import { type Room, type User, type UserDataToUpdate } from '@common/types/index.d'
 import { socketService } from '@client/services'
 import { getUserWinner } from '@client/helpers'
 

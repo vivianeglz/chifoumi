@@ -5,35 +5,34 @@
   "scripts": {
     "dev:client": "vite --port 8080 --host",
     "dev:server": "nodemon server/index.ts",
-    "build": "run-p type-check build:client",
+    "build": "run-p build:server build:client",
     "build:client": "vite build",
-    "build:server": "tsc ./server",
+    "build:server": "tsc ./server/index.ts --outdir ./server/dist",
     "start:server": "node ./server/dist/index.js",
     "test:unit": "vitest",
     "test:ci-unit": "vitest run",
     "test:e2e": "playwright test",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write client/",
     "prepare": "husky install"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
+    "express": "^4.18.2",
     "husky": "^8.0.3",
-    "socket.io-client": "^4.7.2",
-    "vue": "^3.3.2",
-    "vue-router": "^4.2.5",
     "nodemon": "^3.0.1",
     "socket.io": "^4.7.2",
-    "express": "^4.18.2"
+    "socket.io-client": "^4.7.2",
+    "vue": "^3.3.2",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@playwright/test": "^1.35.1",
     "@rushstack/eslint-patch": "^1.3.2",
     "@tsconfig/node18": "^2.0.1",
+    "@types/express": "^4.17.18",
     "@types/jsdom": "^21.1.1",
+    "@types/node": "^20.8.4",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/eslint-config-prettier": "^7.1.0",
     "@vue/eslint-config-typescript": "^11.0.3",
@@ -45,12 +44,10 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.8",
     "sass": "^1.69.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vitest": "^0.32.4",
-    "vue-tsc": "^1.8.15",
-    "@types/express": "^4.17.18",
-    "@types/node": "^20.8.4",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "vue-tsc": "^1.8.15"
   }
 }

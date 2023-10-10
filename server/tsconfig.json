@@ -4,7 +4,6 @@
   "compilerOptions": {
     "composite": true,
     "target": "ESNext",
-    "outDir": "./dist",
     "paths": {
       "@server/*": ["./*"],
       "@common/*": ["../common/*"]

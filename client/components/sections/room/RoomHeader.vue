@@ -21,7 +21,7 @@ const getIsReady = (item: User): boolean => {
       <ul class="header-room__users padding--null">
         <li v-for="item in room.users" :key="item.id">
           {{ item.name }}
-          <span v-if="user?.id === item.id">(Me)</span>
+          <span v-if="user?.id === item.id">(Moi)</span>
           <span v-if="getIsReady(item)" class="margin--xs">✅</span>
           <span v-else class="margin--xs">💭</span>
         </li>
