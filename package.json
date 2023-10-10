@@ -7,7 +7,7 @@
     "dev:server": "nodemon server/index.ts",
     "build": "run-p build:server build:client",
     "build:client": "vite build",
-    "build:server": "tsc ./server/index.ts --outdir ./server/dist",
+    "build:server": "tsc ./server/index.ts --outdir ./dist/server",
     "start:server": "node ./server/dist/index.js",
     "test:unit": "vitest",
     "test:ci-unit": "vitest run",
