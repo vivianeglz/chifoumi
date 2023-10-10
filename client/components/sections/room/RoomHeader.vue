@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useRoom from '@/composables/useRoom'
+import useRoom from '@client/composables/useRoom'
 
 const { room } = useRoom()
 </script>

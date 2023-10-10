@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import HomeHeader from '@/components/sections/home/HomeHeader.vue'
-import HomeActions from '@/components/sections/home/HomeActions.vue'
+import HomeHeader from '@client/components/sections/home/HomeHeader.vue'
+import HomeActions from '@client/components/sections/home/HomeActions.vue'
 </script>
 
 <template>

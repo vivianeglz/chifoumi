@@ -1,4 +1,6 @@
-const getChoiceIcon = (choiceSlug: any): string => {
+import { type ChoiceSlug } from '@common/types/index.d'
+
+const getChoiceIcon = (choiceSlug: ChoiceSlug): string => {
   switch (choiceSlug) {
     case 'rock':
       return 'fa-solid fa-hand-back-fist'

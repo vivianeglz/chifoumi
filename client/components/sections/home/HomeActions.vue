@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import getRandomId from '@common/helpers/getRandomId'
-import ButtonPrimary from '@/components/globals/buttons/ButtonPrimary.vue'
+import ButtonPrimary from '@client/components/globals/buttons/ButtonPrimary.vue'
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ButtonPrimary from '@/components/globals/buttons/ButtonPrimary.vue'
+import ButtonPrimary from '@client/components/globals/buttons/ButtonPrimary.vue'
 
 describe('ButtonPrimary', () => {
   it('ButtonPrimary - renders properly', () => {
