@@ -39,14 +39,15 @@ const joinRoom = ({ socket, roomId }: { socket: any; roomId: string }): void => 
   if (!rooms[roomId]) {
     rooms[roomId] = { users: [], isRoundRunning: false, timer: 0 }
   }
-  rooms[roomId].users.push({
+  const newUser: User = {
     id: socket.id,
     choiceSlug: '',
     name: `user-${socket.id.substring(0, 5)}`,
     isReady: false
-  })
+  }
+  rooms[roomId].users.push(newUser)
   const responseBody: Room = getRoomUpdatedBody(roomId)
-  socket.emit('room-connected', socket.id)
+  socket.emit('room-connected', { id: socket.id, name: newUser.name })
   socket.emit('room-updated', responseBody)
   socket.to(`room-${roomId}`).emit('room-updated', responseBody)
 }

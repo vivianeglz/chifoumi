@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { type User } from '@common/types/index.d'
+import ButtonPrimary from '@client/components/globals/buttons/ButtonPrimary.vue'
 import useRoom from '@client/composables/useRoom'
 import { getChoiceIcon } from '@client/helpers'
 import { computed } from 'vue'
 
-const { user, winner, opponents } = useRoom()
+const { user, winner, opponents, startRound } = useRoom()
 
 const userIsWinner = computed((): boolean => user.value?.id === winner.value?.id)
 const resultTitle = computed((): string => {
@@ -37,4 +38,5 @@ const getUserName = (user: User): string => user.id.substring(0, 6)
       <p>{{ getUserName(user) }} (Moi)</p>
     </div>
   </div>
+  <ButtonPrimary @click="startRound"> Rejouer </ButtonPrimary>
 </template>
