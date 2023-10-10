@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { choiceSlugs } from '@common/constants'
-import { getChoiceIcon } from '@/helpers'
+import { getChoiceIcon } from '@client/helpers'
 </script>
 
 <template>

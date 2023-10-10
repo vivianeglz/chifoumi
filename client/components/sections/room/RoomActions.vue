@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { choiceSlugs } from '@common/constants'
-import useRoom from '@/composables/useRoom'
-import ButtonPrimary from '@/components/globals/buttons/ButtonPrimary.vue'
-import { getChoiceIcon } from '@/helpers'
+import useRoom from '@client/composables/useRoom'
+import ButtonPrimary from '@client/components/globals/buttons/ButtonPrimary.vue'
+import { getChoiceIcon } from '@client/helpers'
 
 const { timerLabel, user, updateUserChoice } = useRoom()
 

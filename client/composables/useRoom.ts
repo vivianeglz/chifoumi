@@ -1,7 +1,8 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { socketService } from '@/services'
-import { getUserWinner } from '@/helpers'
+import { type Room, type User, type ChoiceSlug } from '@common/types/index.d'
+import { socketService } from '@client/services'
+import { getUserWinner } from '@client/helpers'
 
 const timerLabels = ['Mi !', 'Fou..', 'Chi..']
 const socket = new socketService()

@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./client', import.meta.url)),
+      '@client': fileURLToPath(new URL('./client', import.meta.url)),
       '@common': fileURLToPath(new URL('./common', import.meta.url))
     }
   }

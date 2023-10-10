@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import useRoom from '@/composables/useRoom'
-import { getChoiceIcon } from '@/helpers'
+import { type User } from '@common/types/index.d'
+import useRoom from '@client/composables/useRoom'
+import { getChoiceIcon } from '@client/helpers'
 import { computed } from 'vue'
 
 const { user, winner, opponents } = useRoom()

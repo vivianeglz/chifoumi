@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "include": ["**/**/*.ts"],
+  "compilerOptions": {
+    "composite": true,
+    "target": "ESNext",
+    "outDir": "./dist",
+    "paths": {
+      "@server/*": ["./*"],
+      "@common/*": ["../common/*"]
+    },
+    "types": ["node", "express"]
+  }
+}
