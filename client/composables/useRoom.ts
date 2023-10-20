@@ -32,7 +32,9 @@ export default () => {
   const isRoundRunning = computed((): boolean => room.value.isRoundRunning)
   const isRoundEnd = computed(
     (): boolean =>
-      !isRoundRunning.value && room.value.users.every((user: User) => !!user.choiceSlug)
+      !isRoundRunning.value &&
+      room.value.users?.length > 1 &&
+      room.value.users.every((user: User) => !!user.choiceSlug)
   )
   const isRoundReady = computed(
     (): boolean =>

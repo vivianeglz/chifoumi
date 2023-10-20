@@ -14,7 +14,7 @@ setRoom()
   <div class="fullscreen-height">
     <RoomHeader />
     <div class="display-center full-height">
-      <Transition>
+      <Transition mode="out-in">
         <RoomPreparation v-if="isRoundInPreparation" class="margin--top--xl" key="preparation" />
         <RoomChoiceButtons v-else-if="isRoundRunning" key="running" />
         <RoomResults v-else-if="isRoundEnd" key="results" />
