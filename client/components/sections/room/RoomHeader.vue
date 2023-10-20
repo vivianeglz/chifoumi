@@ -13,7 +13,7 @@ const { copyToClipboard } = useCopyClipboard()
 const route = useRoute()
 
 const roomUrl = computed(() => {
-  return `${window.location.origin}${route.path}`
+  return `${window.location.origin}?roomId=${route.params.id}`
 })
 
 const getIsReady = (item: User): boolean => {
