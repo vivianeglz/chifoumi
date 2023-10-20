@@ -22,7 +22,7 @@ const getIsReady = (item: User): boolean => {
 </script>
 
 <template>
-  <header class="header-room color--neutral-00">
+  <header class="header-room">
     <UiButton tag="router-link" :to="{ name: 'home' }" variant="discrete">
       <UiLogo size="s" class="margin--right" />
     </UiButton>

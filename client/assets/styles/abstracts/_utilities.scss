@@ -89,13 +89,16 @@ $background-color-values: (
   'neutral-50': $color-neutral-50,
   'neutral-00': $color-neutral-00,
   'primary-1': $color-primary-1,
-  'primary-2': $color-primary-2
+  'primary-2': $color-primary-2,
+  'secondary-1': $color-secondary-1,
+  'secondary-2': $color-secondary-2,
+  'secondary-3': $color-secondary-3
 );
 
 .background {
   @each $name, $value in $background-color-values {
     &--#{$name} {
-      background-color: $value;
+      background-color: $value !important;
     }
   }
 }
@@ -188,7 +191,7 @@ $text-body-values: 's', 'm';
 .color {
   @each $name, $value in $text-color-values {
     &--#{$name} {
-      color: $value;
+      color: $value !important;
     }
   }
 }
