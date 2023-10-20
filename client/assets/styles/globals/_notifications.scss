@@ -1,0 +1,19 @@
+.notification {
+  position: absolute;
+  bottom: $spacing-s;
+  left: 50%;
+  background: $color-neutral-100;
+  z-index: 5;
+  transform: translate(-50%, 0);
+  @include border;
+}
+
+.notification-enter-active,
+.notification-leave-active {
+  transition: all 0.25s ease;
+}
+
+.notification-enter-from,
+.notification-leave-to {
+  opacity: 0;
+}

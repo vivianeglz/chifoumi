@@ -22,8 +22,10 @@ const onInput = (event: Event) => {
 </script>
 
 <template>
-  <div class="input-container">
-    <label v-if="label" :for="name" class="input-container__label">{{ label }}</label>
+  <div class="input-container" data-test="ui-input">
+    <label v-if="label" :for="name" class="input-container__label" data-test="ui-input-label">
+      {{ label }}
+    </label>
     <input
       :value="modelValue"
       :name="name"
@@ -31,6 +33,7 @@ const onInput = (event: Event) => {
       autocomplete="off"
       @input="onInput"
       @keypress.enter.prevent
+      data-test="ui-input-input"
       class="input-container__input"
     />
   </div>

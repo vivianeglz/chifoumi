@@ -5,7 +5,11 @@
   cursor: pointer;
   font-family: $font-family-body;
   text-decoration: none;
-  border-radius: 4px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  @include border;
 
   &:disabled {
     opacity: 0.5;
@@ -13,13 +17,17 @@
   }
 
   &--primary {
-    background: $color-primary-1;
-    color: $color-neutral-00;
+    background: $color-neutral-00;
+    color: $color-neutral-100;
   }
 
   &--secondary {
-    background: $color-neutral-00;
-    color: $color-primary-1;
-    border: 1px solid $color-primary-1;
+    background: $color-secondary-1;
+    color: $color-neutral-100;
+  }
+
+  &--discrete {
+    background: $color-primary-2;
+    color: $color-neutral-00;
   }
 }
