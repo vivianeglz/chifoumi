@@ -88,7 +88,8 @@ $background-color-values: (
   'neutral-100': $color-neutral-100,
   'neutral-50': $color-neutral-50,
   'neutral-00': $color-neutral-00,
-  'primary-1': $color-primary-1
+  'primary-1': $color-primary-1,
+  'primary-2': $color-primary-2
 );
 
 .background {
@@ -158,6 +159,10 @@ $text-color-values: (
   'neutral-50': $color-neutral-50,
   'neutral-00': $color-neutral-00,
   'primary-1': $color-primary-1,
+  'primary-2': $color-primary-2,
+  'secondary-1': $color-secondary-1,
+  'secondary-2': $color-secondary-2,
+  'secondary-3': $color-secondary-3,
   'warning': $color-warning,
   'caution': $color-caution,
   'positive': $color-positive
@@ -200,4 +205,12 @@ $text-body-values: 's', 'm';
   &--semi-bold {
     font-weight: $font-weight-semi-bold;
   }
+}
+
+.border {
+  @include border;
+}
+
+.border-radius-100 {
+  border-radius: 100%;
 }

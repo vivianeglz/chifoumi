@@ -28,6 +28,7 @@ export default () => {
   const opponents = computed(
     (): Array<User> => room.value.users.filter((user: User) => user.id !== userId.value)
   )
+  const isRoundInPreparation = computed((): boolean => !isRoundRunning.value && !isRoundEnd.value)
   const isRoundRunning = computed((): boolean => room.value.isRoundRunning)
   const isRoundEnd = computed(
     (): boolean =>
@@ -42,6 +43,13 @@ export default () => {
     Object.assign(room.value, newRoomData)
   }
   const setRoom = (): void => {
+    room.value = {
+      isRoundRunning: false,
+      users: [],
+      timer: 0
+    }
+    userId.value = ''
+
     socket.emit('join-room', { roomId: roomId.value })
     socket.on('room-updated', updateRoom)
     socket.on('room-connected', ({ id, name }: { id: string; name: string }) => {
@@ -66,6 +74,7 @@ export default () => {
     isRoundRunning,
     isRoundEnd,
     isRoundReady,
+    isRoundInPreparation,
     setRoom,
     startRound,
     updateUser

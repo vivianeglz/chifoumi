@@ -2,26 +2,26 @@
 import { choiceSlugs } from '@common/constants'
 import { type ChoiceSlug } from '@common/types/index.d'
 import useRoom from '@client/composables/useRoom'
-import ButtonPrimary from '@client/components/globals/buttons/ButtonPrimary.vue'
+import UiButton from '@client/components/globals/buttons/UiButton.vue'
 import { getChoiceIcon } from '@client/helpers'
 
 const { timerLabel, user, updateUser } = useRoom()
 
 const getVariant = (choiceSlug: ChoiceSlug) =>
-  user.value?.choiceSlug === choiceSlug ? 'primary' : 'secondary'
+  user.value?.choiceSlug === choiceSlug ? 'secondary' : 'primary'
 </script>
 
 <template>
-  <p class="text-body--m font-weight--bold">{{ timerLabel }}</p>
-  <div class="display-flex">
-    <ButtonPrimary
+  <p class="text-body--m font-weight--bold color--neutral-00">{{ timerLabel }}</p>
+  <div class="display--flex">
+    <UiButton
       v-for="choiceSlug in choiceSlugs"
       :key="choiceSlug"
       :variant="getVariant(choiceSlug)"
       @click="updateUser({ choiceSlug })"
-      class="margin--left--s margin--right--s"
+      class="margin--left--s margin--right--s text-body--m"
     >
       <FontAwesomeIcon :icon="getChoiceIcon(choiceSlug)" />
-    </ButtonPrimary>
+    </UiButton>
   </div>
 </template>

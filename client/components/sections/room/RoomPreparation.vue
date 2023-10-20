@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import useRoom from '@client/composables/useRoom'
-import ButtonPrimary from '@client/components/globals/buttons/ButtonPrimary.vue'
-import InputText from '@client/components/globals/inputs/InputText.vue'
+import UiButton from '@client/components/globals/buttons/UiButton.vue'
+import UiInput from '@client/components/globals/inputs/UiInput.vue'
+import UiLoader from '@client/components/globals/icons/UiLoader.vue'
+import UiTile from '@client/components/globals/tile/UiTile.vue'
 
 const { startRound, updateUser, userName, isRoundReady, user } = useRoom()
 
@@ -14,16 +16,22 @@ const onReady = () => {
 </script>
 
 <template>
-  <ButtonPrimary v-if="isRoundReady" @click="startRound"> Jouer ! </ButtonPrimary>
+  <UiButton v-if="isRoundReady" @click="startRound" variant="secondary"> Jouer ! </UiButton>
   <template v-if="!isRoundReady">
     <template v-if="user?.isReady">
-      <p>En attente des autres joueurs...</p>
+      <UiLoader />
+      <p class="margin--top--m margin--bottom--null color--neutral-00">
+        En attente des autres joueurs...
+      </p>
     </template>
     <template v-else>
-      <InputText v-model="userName" name="name" label="Pseudo" class="margin--bottom--m" />
-      <ButtonPrimary :disabled="isReadyDisabled" variant="secondary" @click="onReady">
-        Je suis prêt
-      </ButtonPrimary>
+      <UiInput
+        v-model="userName"
+        name="name"
+        label="Pseudo"
+        class="margin--bottom--m color--neutral-00"
+      />
+      <UiButton :disabled="isReadyDisabled" @click="onReady"> Je suis prêt </UiButton>
     </template>
   </template>
 </template>

@@ -14,7 +14,6 @@ $font-family-body: 'Poppins', sans-serif;
   font-family: $font-family-title;
   font-weight: $font-weight-bold;
   font-size: 3em;
-  color: $color-neutral-100;
 }
 
 /* Body */
@@ -28,7 +27,6 @@ $font-family-body: 'Poppins', sans-serif;
 @mixin text-body($size) {
   font-family: $font-family-body;
   font-weight: $font-weight-regular;
-  color: $color-neutral-100;
 
   @if $size == 's' {
     @include text-body-s;

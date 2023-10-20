@@ -5,7 +5,7 @@ import RoomChoiceButtons from '@client/components/sections/room/RoomChoiceButton
 import RoomResults from '@client/components/sections/room/RoomResults.vue'
 import RoomPreparation from '@client/components/sections/room/RoomPreparation.vue'
 
-const { setRoom, isRoundEnd, isRoundRunning } = useRoom()
+const { setRoom, isRoundEnd, isRoundRunning, isRoundInPreparation } = useRoom()
 
 setRoom()
 </script>
@@ -14,9 +14,11 @@ setRoom()
   <div class="fullscreen-height">
     <RoomHeader />
     <div class="display-center full-height">
-      <RoomResults v-if="isRoundEnd" />
-      <RoomChoiceButtons v-if="isRoundRunning" />
-      <RoomPreparation v-if="!isRoundEnd && !isRoundRunning" class="margin--top--xl" />
+      <Transition>
+        <RoomPreparation v-if="isRoundInPreparation" class="margin--top--xl" key="preparation" />
+        <RoomChoiceButtons v-else-if="isRoundRunning" key="running" />
+        <RoomResults v-else-if="isRoundEnd" key="results" />
+      </Transition>
     </div>
   </div>
 </template>

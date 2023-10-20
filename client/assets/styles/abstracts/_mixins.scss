@@ -1,0 +1,5 @@
+@mixin border {
+  border-radius: $border-radius-s;
+  border: $border-s solid $color-neutral-100;
+  border-bottom-width: $border-m;
+}
